@@ -63,7 +63,15 @@ st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consid
 
 # AI Financial Assistant
 st.subheader("AI Financial Assistant")
-st.text_area("Ask me anything about your finances!")
+user_query = st.text_area("Ask me anything about your finances!")
+
+if user_query:
+    if "round-up" in user_query.lower() or "transfer rule" in user_query.lower():
+        st.write("### Automatic Transfer Rule")
+        st.write("If you round up $150.00 or more per month, it gets automatically transferred to AMEX high-yield savings.")
+        st.write("Based on your current savings of $194.49 per month, you are on track to transfer your savings efficiently.")
+    else:
+        st.write("I'm here to help! Try asking about your savings, transfer rules, or financial insights.")
 
 # Automatic Savings Rule
 st.subheader("Automatic Transfer Rule")
