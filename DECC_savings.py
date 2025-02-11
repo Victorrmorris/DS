@@ -63,9 +63,22 @@ st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consid
 
 # AI Financial Assistant
 st.subheader("AI Financial Assistant")
+st.markdown("[What if I change to nearest $5 round-up and transfer that total each month to a HYSA with 3.80% APY?](#)", unsafe_allow_html=True)
 user_query = st.text_area("Ask me anything about your finances!")
 
 if user_query:
+    if "nearest $5 round-up" in user_query.lower() or "3.80% APY" in user_query.lower():
+        new_savings_per_month = 250.00  # Dummy new savings amount with $5 round-up
+        new_savings_per_year = new_savings_per_month * 12
+        apy = 0.038
+        estimated_interest = new_savings_per_year * apy
+        total_with_interest = new_savings_per_year + estimated_interest
+
+        st.write("### Adjusted Round-Up Savings Calculation")
+        st.write(f"If you switch to rounding up to the nearest $5 and deposit monthly into a 3.80% APY savings account, your new estimated monthly savings would be ${new_savings_per_month:,.2f}.")
+        st.write(f"This would total ${new_savings_per_year:,.2f} annually before interest.")
+        st.write(f"With a 3.80% APY, your estimated total savings including interest after one year would be approximately ${total_with_interest:,.2f}.")
+    elif "round-up" in user_query.lower() or "transfer rule" in user_query.lower():
     if "round-up" in user_query.lower() or "transfer rule" in user_query.lower():
         st.write("### Automatic Transfer Rule")
         st.write("If you round up $150.00 or more per month, it gets automatically transferred to AMEX high-yield savings.")
