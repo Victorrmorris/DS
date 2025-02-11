@@ -65,8 +65,8 @@ st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consid
 st.subheader("AI Financial Assistant")
 if st.button("What if I change to nearest $5 round-up and transfer that total each month to a HYSA with 3.80% APY?"):
     user_query = "nearest $5 round-up"
-    new_savings_per_month = 250.00  # Dummy new savings amount with $5 round-up
-    new_savings_per_year = new_savings_per_month * 12
+    new_savings_per_month = (savings_per_month / 1) * 5  # Adjusting from $1 rounding to $5 rounding
+    new_savings_per_year = (savings_per_month / 1) * 5 * 12
     apy = 0.038
     estimated_interest = new_savings_per_year * apy
     total_with_interest = new_savings_per_year + estimated_interest
