@@ -16,8 +16,8 @@ accounts = [
 ]
 
 total_balance = sum(acc["balance"] for acc in accounts)
-savings_per_month = sum(acc["savings"] for acc in accounts)
-savings_per_year = savings_per_month * 12
+savings_per_month = 194.49
+savings_per_year = 194.49 * 12
 
 # Auto-transfer pooled savings
 high_yield_account = "AMEX Savings"
