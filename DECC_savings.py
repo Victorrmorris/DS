@@ -79,7 +79,6 @@ if user_query:
         st.write(f"This would total ${new_savings_per_year:,.2f} annually before interest.")
         st.write(f"With a 3.80% APY, your estimated total savings including interest after one year would be approximately ${total_with_interest:,.2f}.")
     elif "round-up" in user_query.lower() or "transfer rule" in user_query.lower():
-    if "round-up" in user_query.lower() or "transfer rule" in user_query.lower():
         st.write("### Automatic Transfer Rule")
         st.write("If you round up $150.00 or more per month, it gets automatically transferred to AMEX high-yield savings.")
         st.write("Based on your current savings of $194.49 per month, you are on track to transfer your savings efficiently.")
