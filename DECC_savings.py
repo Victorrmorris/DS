@@ -2,25 +2,21 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 # App Configuration
 st.set_page_config(page_title="DECC Savings Dashboard", layout="wide", initial_sidebar_state='expanded')
 
 # Dummy Data
 accounts = [
-    {"name": "USAA Checking", "balance": 4500.13},
-    {"name": "AMEX Savings", "balance": 20348.05},
-    {"name": "Germany Checking", "balance": 233.81},
-    {"name": "Wise", "balance": 198.76},
-    {"name": "Greenlight (Kids)", "balance": 300.00},
+    {"name": "USAA Checking", "balance": 4500.13, "savings": 75},
+    {"name": "Germany Checking", "balance": 233.81, "savings": 30},
+    {"name": "Wise", "balance": 198.76, "savings": 60},
+    {"name": "Greenlight (Kids)", "balance": 300.00, "savings": 25},
 ]
 
 total_balance = sum(acc["balance"] for acc in accounts)
-
-# Round-up Savings Calculation
-transactions = [random.uniform(1.50, 98.99) for _ in range(50)]  # Simulated transactions
-round_up_savings = sum([np.ceil(t) - t for t in transactions])
-savings_per_month = round_up_savings + random.uniform(50, 100)
+savings_per_month = sum(acc["savings"] for acc in accounts)
 savings_per_year = savings_per_month * 12
 
 # Auto-transfer pooled savings
@@ -52,6 +48,15 @@ st.metric("Total Balance", f"${total_balance:,.2f}")
 st.subheader("All Accounts Automatic Savings")
 st.metric("Monthly Savings", f"${savings_per_month:,.2f}")
 st.metric("Yearly Savings Estimate", f"${savings_per_year:,.2f}")
+
+# Bar Chart for Savings Distribution
+fig, ax = plt.subplots()
+account_names = [acc["name"] for acc in accounts]
+savings_values = [acc["savings"] for acc in accounts]
+ax.bar(account_names, savings_values, color=["blue", "lightblue", "green", "lightgreen"])
+ax.set_ylabel("Savings ($)")
+ax.set_title("Automatic savings from all accounts")
+st.pyplot(fig)
 
 # Savings Insights
 st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consider optimizing subscriptions and discretionary spending to boost savings.")
