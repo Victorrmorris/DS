@@ -26,22 +26,6 @@ savings_per_year = savings_per_month * 12
 # Auto-transfer pooled savings
 high_yield_account = "AMEX Savings"
 
-subscriptions = [
-    {"name": "Netflix", "cost": 16.77},
-    {"name": "Amazon", "cost": 18.39},
-    {"name": "Google Workspace", "cost": 35.30},
-]
-
-total_subscriptions = sum(sub["cost"] for sub in subscriptions)
-
-bills = [
-    {"name": "Germany Rent", "cost": 1800.00},
-    {"name": "O2 - Internet", "cost": 39.99},
-    {"name": "REWAG - Utilities", "cost": 30.00},
-]
-
-total_bills = sum(bill["cost"] for bill in bills)
-
 # Sidebar Navigation
 st.sidebar.title("DECC Navigation")
 st.sidebar.header("Accounts & Insights")
@@ -71,18 +55,6 @@ st.metric("Yearly Savings Estimate", f"${savings_per_year:,.2f}")
 
 # Savings Insights
 st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consider optimizing subscriptions and discretionary spending to boost savings.")
-
-# Subscription Management
-st.subheader("Subscription Management")
-sub_df = pd.DataFrame(subscriptions)
-st.table(sub_df)
-st.write(f"**Total Monthly Subscription Cost:** ${total_subscriptions:,.2f}")
-
-# Bill Management
-st.subheader("Bill Management")
-bill_df = pd.DataFrame(bills)
-st.table(bill_df)
-st.write(f"**Total Monthly Bills:** ${total_bills:,.2f}")
 
 # AI Financial Assistant
 st.subheader("AI Financial Assistant")
