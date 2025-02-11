@@ -16,8 +16,15 @@ accounts = [
 ]
 
 total_balance = sum(acc["balance"] for acc in accounts)
-savings_per_month = random.uniform(180, 250)
+
+# Round-up Savings Calculation
+transactions = [random.uniform(1.50, 98.99) for _ in range(50)]  # Simulated transactions
+round_up_savings = sum([np.ceil(t) - t for t in transactions])
+savings_per_month = round_up_savings + random.uniform(50, 100)
 savings_per_year = savings_per_month * 12
+
+# Auto-transfer pooled savings
+high_yield_account = "AMEX Savings"
 
 subscriptions = [
     {"name": "Netflix", "cost": 16.77},
@@ -63,7 +70,7 @@ st.metric("Monthly Savings", f"${savings_per_month:,.2f}")
 st.metric("Yearly Savings Estimate", f"${savings_per_year:,.2f}")
 
 # Savings Insights
-st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year.")
+st.info(f"At this pace, you will save ${savings_per_year:,.2f} this year. Consider optimizing subscriptions and discretionary spending to boost savings.")
 
 # Subscription Management
 st.subheader("Subscription Management")
@@ -83,6 +90,6 @@ st.text_area("Ask me anything about your finances!")
 
 # Automatic Savings Rule
 st.subheader("Automatic Transfer Rule")
-st.write("If you round up $150.00 or more per month, it gets automatically transferred to AMEX high-yield savings.")
+st.write(f"Your pooled savings of ${savings_per_month:,.2f} is automatically transferred to {high_yield_account} to maximize your returns.")
 
 st.success(f"Your savings automation is active and running smoothly! Your projected yearly savings is ${savings_per_year:,.2f}.")
